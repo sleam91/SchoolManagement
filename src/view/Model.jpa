@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" v="4.9" rws="_157951338195124" Pws="_157951338195124" cws="_157951338195124" persistenceUnitName="DEFAULT_PU" sm="false" xs="false" id="_15795133802051" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+    <jpa:entity compositePrimaryKeyClass="TeacherPK" abs="false" class="Teacher" v="true" xre="false" m="false" rootElement="_15795133802051" id="_15795133811312">
+        <jpa:attributes>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="name" id="_15795133811397">
+                <jpa:column name="NAME" unique="false" nullable="true" insertable="true" updatable="true" table="teacher" length="255"/>
+            </jpa:basic>
+            <jpa:many-to-many own="true" collection-type="java.util.List" connected-entity-id="_15795133811354" connected-attribute-id="_157951338113916" v="true" xvt="" name="course_id" id="_15795133811398">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-many>
+            <jpa:id attribute-type="Integer" v="true" name="id" id="_15795133811396">
+                <jpa:column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="teacher"/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="teacher">
+            <jpa:unique-constraint>
+                <jpa:column-name>NAME</jpa:column-name>
+            </jpa:unique-constraint>
+        </jpa:table>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="StudentPK" abs="false" class="Student" v="true" xre="false" m="false" rootElement="_15795133802051" id="_15795133811353">
+        <jpa:attributes>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="name" id="_157951338113910">
+                <jpa:column name="NAME" unique="false" nullable="true" insertable="true" updatable="true" table="student" length="255"/>
+            </jpa:basic>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_15795133811355" connected-attribute-id="_157951338113922" v="true" xvt="" name="program_id" id="_157951338113911">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:join-column name="PROGRAM_ID" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:id attribute-type="Integer" v="true" name="id" id="_15795133811399">
+                <jpa:column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="student"/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="student">
+            <jpa:unique-constraint>
+                <jpa:column-name>NAME</jpa:column-name>
+            </jpa:unique-constraint>
+        </jpa:table>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="CoursePK" abs="false" class="Course" v="true" xre="false" m="false" rootElement="_15795133802051" id="_15795133811354">
+        <jpa:attributes>
+            <jpa:basic optional="true" attribute-type="java.util.Date" v="true" xvt="" name="endDate" id="_157951338113913">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:temporal>DATE</jpa:temporal>
+                <jpa:column name="ENDDATE" unique="false" nullable="true" insertable="true" updatable="true" table="course"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="name" id="_157951338113914">
+                <jpa:column name="NAME" unique="false" nullable="true" insertable="true" updatable="true" table="course" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="java.util.Date" v="true" xvt="" name="startDate" id="_157951338113915">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:temporal>DATE</jpa:temporal>
+                <jpa:column name="STARTDATE" unique="false" nullable="true" insertable="true" updatable="true" table="course"/>
+            </jpa:basic>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_15795133811355" connected-attribute-id="_157951338113923" v="true" xvt="" name="program_id" id="_157951338113917">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:join-column name="PROGRAM_ID" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:many-to-many collection-type="java.util.List" connected-entity-id="_15795133811312" connected-attribute-id="_15795133811398" v="true" xvt="" name="teacher_id" id="_157951338113916">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:join-table name="course_teacher">
+                    <jpa:join-column name="COURSELIST_ID" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+                    <jpa:inverse-join-column name="TEACHERLIST_ID" rc="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+                </jpa:join-table>
+            </jpa:many-to-many>
+            <jpa:id attribute-type="Integer" v="true" name="id" id="_157951338113912">
+                <jpa:column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="course"/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="course">
+            <jpa:unique-constraint>
+                <jpa:column-name>NAME</jpa:column-name>
+            </jpa:unique-constraint>
+        </jpa:table>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="ProgramPK" abs="false" class="Program" v="true" xre="false" m="false" rootElement="_15795133802051" id="_15795133811355">
+        <jpa:attributes>
+            <jpa:basic optional="true" attribute-type="java.util.Date" v="true" xvt="" name="endDate" id="_157951338113919">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:temporal>DATE</jpa:temporal>
+                <jpa:column name="ENDDATE" unique="false" nullable="true" insertable="true" updatable="true" table="program"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="String" v="true" name="name" id="_157951338113920">
+                <jpa:column name="NAME" unique="false" nullable="true" insertable="true" updatable="true" table="program" length="255"/>
+            </jpa:basic>
+            <jpa:basic optional="true" attribute-type="java.util.Date" v="true" xvt="" name="startDate" id="_157951338113921">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:temporal>DATE</jpa:temporal>
+                <jpa:column name="STARTDATE" unique="false" nullable="true" insertable="true" updatable="true" table="program"/>
+            </jpa:basic>
+            <jpa:one-to-many own="false" collection-type="java.util.List" connected-entity-id="_15795133811353" connected-attribute-id="_157951338113911" v="true" xvt="" name="student_id" id="_157951338113922">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-many>
+            <jpa:one-to-many own="false" collection-type="java.util.List" connected-entity-id="_15795133811354" connected-attribute-id="_157951338113917" v="true" xvt="" name="course_id" id="_157951338113923">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-many>
+            <jpa:id attribute-type="Integer" v="true" name="id" id="_157951338113918">
+                <jpa:column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="program"/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="program">
+            <jpa:unique-constraint>
+                <jpa:column-name>NAME</jpa:column-name>
+            </jpa:unique-constraint>
+        </jpa:table>
+    </jpa:entity>
+    <jpa:snp loc="BEFORE_PACKAGE" e="true">/**
+ * This file was generated by the Jeddict
+ */</jpa:snp>
+    <jpa:wsl>
+        <jpa:ws n="Main" id="_157951338195124">
+            <i ref="_15795133811312" x="568" y="248"/>
+            <i ref="_15795133811355" x="180" y="-6"/>
+            <i ref="_15795133811354" x="38" y="248"/>
+            <i ref="_15795133811353" x="548" y="25"/>
+        </jpa:ws>
+    </jpa:wsl>
+</jpa:entity-mappings>
